@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Shoaib Ahmad – Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --page-bg: #020617;
+      --sidebar-bg: #020617;
+      --sidebar-border: #1e293b;
+      --main-bg: #0b1120;
+      --card-bg: #020617;
+      --card-border: #1f2937;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.15);
+      --accent-strong: #0ea5e9;
+      --text-main: #e5e7eb;
+      --text-muted: #9ca3af;
+      --chip-bg: #111827;
+      --chip-border: #374151;
+      --radius-lg: 18px;
+      --radius-xl: 24px;
+      --shadow-soft: 0 22px 45px rgba(15, 23, 42, 0.6);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #0f172a 0, #020617 55%);
+      color: var(--text-main);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: color 0.18s ease, opacity 0.18s ease;
+    }
+
+    a:hover {
+      color: var(--accent-strong);
+      text-decoration: underline;
+    }
+
+    .page {
+      min-height: 100vh;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 24px 18px 40px;
+      display: grid;
+      grid-template-columns: 280px minmax(0, 1fr);
+      gap: 28px;
+    }
+
+    /* Sidebar */
+
+    .sidebar {
+      background: linear-gradient(160deg, #020617, #020617 40%, #0b1120);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--sidebar-border);
+      padding: 22px 20px 22px;
+      position: sticky;
+      top: 18px;
+      align-self: flex-start;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .avatar-ring {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      border: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      background: radial-gradient(circle, #0f172a 0, #020617 60%);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      font-size: 18px;
+      color: var(--accent);
+    }
+
+    .sidebar h1 {
+      margin: 0 0 4px;
+      font-size: 22px;
+      letter-spacing: 0.02em;
+    }
+
+    .sidebar-role {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .sidebar-location {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .sidebar-section-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin: 18px 0 6px;
+    }
+
+    .sidebar-section-title:first-of-type {
+      margin-top: 14px;
+    }
+
+    .contact-list,
+    .nav-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      font-size: 13px;
+    }
+
+    .contact-list li,
+    .nav-list li {
+      margin-bottom: 6px;
+    }
+
+    .muted-label {
+      color: var(--text-muted);
+      margin-right: 4px;
+    }
+
+    .nav-list a {
+      display: inline-block;
+      padding: 4px 0;
+    }
+
+    .nav-list a::before {
+      content: "• ";
+      color: var(--accent);
+    }
+
+    .tag-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .chip {
+      font-size: 11px;
+      border-radius: 999px;
+      padding: 3px 9px;
+      background: var(--chip-bg);
+      border: 1px solid var(--chip-border);
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* Main content */
+
+    .main {
+      background: radial-gradient(circle at top left, #111827 0, #020617 70%);
+      border-radius: var(--radius-xl);
+      border: 1px solid #111827;
+      padding: 26px 26px 30px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero {
+      margin-bottom: 24px;
+      border-bottom: 1px solid #111827;
+      padding-bottom: 18px;
+    }
+
+    .hero-title-line {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 10px;
+    }
+
+    .hero h2 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .hero-tagline {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .hero-summary {
+      font-size: 14px;
+      margin-top: 10px;
+      color: var(--text-main);
+      max-width: 720px;
+    }
+
+    .hero-highlight {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      margin-top: 8px;
+    }
+
+    .section {
+      margin-top: 22px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+    }
+
+    .section-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .card {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--card-border);
+      background: linear-gradient(150deg, rgba(15, 23, 42, 0.9), #020617);
+      padding: 14px 16px 12px;
+      margin-bottom: 10px;
+    }
+
+    .card-header-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: baseline;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .card-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .card-pill {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .card ul {
+      margin: 8px 0 4px 18px;
+      padding: 0;
+      font-size: 13px;
+      color: var(--text-main);
+    }
+
+    .inline-links {
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .inline-links a + a {
+      margin-left: 8px;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .pill {
+      border-radius: 999px;
+      border: 1px solid var(--card-border);
+      padding: 3px 9px;
+      font-size: 12px;
+      color: var(--text-muted);
+      background: rgba(15, 23, 42, 0.85);
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr);
+      gap: 16px;
+    }
+
+    .skills-groups {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+    }
+
+    .skills-group-title {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .skills-group-body {
+      font-size: 13px;
+      color: var(--text-main);
+    }
+
+    .skills-group-body span {
+      white-space: nowrap;
+    }
+
+    .skills-group-body span + span::before {
+      content: " · ";
+      color: var(--text-muted);
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      .page {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 16px 12px 28px;
+      }
+
+      .sidebar {
+        position: static;
+        display: grid;
+        grid-template-columns: auto minmax(0, 1fr);
+        gap: 14px;
+        padding: 16px 16px 14px;
+      }
+
+      .avatar-ring {
+        margin-bottom: 0;
+      }
+
+      .main {
+        padding: 18px 16px 24px;
+      }
+
+      .two-column {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 520px) {
+      .sidebar {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero h2 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div>
+        <div class="avatar-ring">SA</div>
+        <h1>Shoaib Ahmad</h1>
+        <div class="sidebar-role">Robotic Process Engineer</div>
+        <div class="sidebar-location">CureMD · Remote · Pakistan</div>
+
+        <div class="sidebar-section-title">Contact</div>
+        <ul class="contact-list">
+          <li>
+            <span class="muted-label">Email:</span>
+            <a href="mailto:shoaibawan858@gmail.com">shoaibawan858@gmail.com</a>
+          </li>
+          <li>
+            <span class="muted-label">Phone:</span>
+            <a href="tel:+923341725141">+92 (334) 1725141</a>
+          </li>
+          <li>
+            <span class="muted-label">LinkedIn:</span>
+            <a href="#" target="_blank" rel="noreferrer">View profile</a>
+          </li>
+          <li>
+            <span class="muted-label">GitHub:</span>
+            <a href="#" target="_blank" rel="noreferrer">View repositories</a>
+          </li>
+        </ul>
+
+        <div class="sidebar-section-title">Navigate</div>
+        <ul class="nav-list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects & Research</a></li>
+          <li><a href="#hackathons">Hackathons</a></li>
+          <li><a href="#teaching">Teaching</a></li>
+          <li><a href="#volunteering">Leadership</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#workshops">Workshops</a></li>
+        </ul>
+
+        <div class="sidebar-section-title">Focus Areas</div>
+        <div class="tag-chips">
+          <span class="chip">RPA & Automation</span>
+          <span class="chip">Python & Django</span>
+          <span class="chip">Machine Learning</span>
+          <span class="chip">Power Systems</span>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main content -->
+    <main class="main">
+      <!-- Hero / About -->
+      <section id="about" class="hero">
+        <div class="hero-title-line">
+          <h2>Engineer at the intersection of power systems, AI, and automation.</h2>
+        </div>
+        <p class="hero-summary">
+          Robotic Process Engineer at CureMD with a Bachelor’s in Electrical Power and Instrumentation.
+          I build RPA bots, backend and API testing workflows, and apply machine learning to fault
+          detection, grid stability, and smart grid optimization. Experience spans competitive programming,
+          international hackathons, and teaching with Stanford’s Code In Place.
+        </p>
+        <div class="hero-highlight">
+          <span>🏅</span>
+          <span>
+            Engineering Excellence & Learning Star Award at CureMD · Top 10 (National) Meta Hacker Cup 2024
+          </span>
+        </div>
+      </section>
+
+      <!-- Achievements -->
+      <section id="achievements" class="section">
+        <div class="section-header">
+          <div class="section-title">Achievements & Awards</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header-line">
+            <div>
+              <div class="card-title">Advent of Code 2024</div>
+              <div class="card-meta">30+ daily coding challenges · Algorithmic problem solving</div>
+            </div>
+            <span class="card-pill">Consistency</span>
+          </div>
+          <ul>
+            <li>Completed Advent of Code 2024, solving daily challenges to strengthen logic and programming discipline.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-header-line">
+            <div>
+              <div class="card-title">Code In Place Mentor – Stanford University</div>
+              <div class="card-meta">Selected among 30,000+ applicants · 2024</div>
+            </div>
+            <span class="card-pill">Teaching</span>
+          </div>
+          <ul>
+            <li>Mentored CS106A Python students globally, providing one-on-one guidance and practical coding support.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-header-line">
+            <div>
+              <div class="card-title">Unhallucinate Challenge – 3rd Place</div>
+              <div class="card-meta">24-hour hackathon · 46 teams</div>
+            </div>
+            <span class="card-pill">LLMs</span>
+          </div>
+          <ul>
+            <li>Ranked 3rd by building and deploying a system focused on reducing hallucinations in LLM outputs.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-header-line">
+            <div>
+              <div class="card-title">Engineering Excellence & Learning Star – CureMD</div>
+              <div class="card-meta">CureMD Engineering Award Event</div>
+            </div>
+            <span class="card-pill">Growth</span>
+          </div>
+          <ul>
+            <li>Recognized for exceptional dedication to continuous learning and professional skill development.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-header-line">
+            <div>
+              <div class="card-title">Meta Hacker Cup 2024 – Top 10 (National)</div>
+              <div class="card-meta">Advanced to Round 1 among 22,000+ participants</div>
+            </div>
+            <span class="card-pill">Algorithms</span>
+          </div>
+          <ul>
+            <li>Competed in Meta’s global programming contest, solving challenging algorithmic problems under time pressure.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-header-line">
+            <div>
+              <div class="card-title">IELTS – Band 6.5 (CEFR B2)</div>
+              <div class="card-meta">English communication proficiency</div>
+            </div>
+            <span class="card-pill">Communication</span>
+          </div>
+          <ul>
+            <li>Demonstrated strong English reading, writing, listening, and speaking abilities.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Experience -->
+      <section id="experience" class="section">
+        <div class="section-header">
+          <div class="section-title">Professional Experience</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header-line">
+            <div>
+              <div class="card-title">Robotic Process Engineer · CureMD</div>
+              <div class="card-meta">Remote · July 2023 – Present</div>
+            </div>
+            <span class="card-pill">RPA & Backend QA</span>
+          </div>
+          <ul>
+            <li>Develop RPA bots using UiPath and Automation Anywhere to automate business processes and optimize workflows.</li>
+            <li>Perform backend testing using SQL, validate stored procedures, and automate API testing with Postman & Newman.</li>
+            <li>Collaborate on Angular, Django, and .NET Core applications to deliver scalable, cross-functional solutions.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-header-line">
+            <div>
+              <div class="card-title">Graduate Trainee Engineer · Mashal Construction Company</div>
+              <div class="card-meta">Faisalabad, Pakistan · June 2022 – July 2023</div>
+            </div>
+            <span class="card-pill">Power & Automation</span>
+          </div>
+          <ul>
+            <li>Gained hands-on experience with power distribution, motors, drive systems, and automation control systems.</li>
+            <li>Worked with electrical circuits, PLCs, and control panels to optimize performance in asphalt mixing, paving, and batching plants.</li>
+            <li>Contributed to efficient system operations and overall project delivery.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-header-line">
+            <div>
+              <div class="card-title">Power Engineer Intern · Rousch Power Plant (Descon)</div>
+              <div class="card-meta">Lahore, Pakistan · Aug 2021 – Sep 2021</div>
+            </div>
+            <span class="card-pill">Generation</span>
+          </div>
+          <ul>
+            <li>Observed gas and steam turbine-based power generation with a focus on transmission and system efficiency.</li>
+            <li>Developed understanding of plant operations, documentation, and cross-functional teamwork.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Projects & Research -->
+      <section id="projects" class="section">
+        <div class="section-header">
+          <div class="section-title">Projects & Research</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header-line">
+            <div>
+              <div class="card-title">Fault Detection & Classification Using Machine Learning</div>
+              <div class="card-meta">Python · Power Systems · 2023</div>
+            </div>
+            <span class="card-pill">ML for Grids</span>
+          </div>
+          <ul>
+            <li>Developed a Python-based fault analysis system using OOP for data preprocessing, visualization, and model training.</li>
+            <li>Trained Logistic Regression, Decision Tree, Random Forest, and SVM models for automated fault diagnostics.</li>
+            <li>Improved grid reliability by enabling predictive maintenance and faster anomaly detection.</li>
+          </ul>
+          <div class="inline-links">
+            <a href="#" target="_blank" rel="noreferrer">Source Code</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header-line">
+            <div>
+              <div class="card-title">Stability by Design: ML Models for Smart Grid Predictions</div>
+              <div class="card-meta">Random Forest · XGBoost · 2023</div>
+            </div>
+            <span class="card-pill">Smart Grid</span>
+          </div>
+          <ul>
+            <li>Performed a comparative study of Random Forest, Decision Tree, SVM, and XGBoost to predict smart grid stability.</li>
+            <li>Classified grid operating conditions to address reliability challenges and prevent system failures.</li>
+          </ul>
+          <div class="inline-links">
+            <a href="#" target="_blank" rel="noreferrer">Source Code</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header-line">
+            <div>
+              <div class="card-title">Rehabilitation of Power System for Reduction in Line Losses</div>
+              <div class="card-meta">Final Year Project · 177-bus grid</div>
+            </div>
+            <span class="card-pill">Optimization</span>
+          </div>
+          <ul>
+            <li>Designed a power system scheme with Distributed Generation (solar and wind) from Sahiwal (Main) to Gujranwala.</li>
+            <li>Applied Genetic Algorithm (GA) and Particle Swarm Optimization (PSO) to reduce line losses and optimize cost.</li>
+          </ul>
+          <div class="inline-links">
+            <a href="#" target="_blank" rel="noreferrer">Source Code</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header-line">
+            <div>
+              <div class="card-title">Instrumentation & Power Automation – Smart Grid Monitoring</div>
+              <div class="card-meta">Instrumentation & Robotics · FYP</div>
+            </div>
+            <span class="card-pill">Automation</span>
+          </div>
+          <ul>
+            <li>Built a Smart-Grid-Monitoring system to reduce line losses and enhance visibility across the grid.</li>
+            <li>Focused on reliable and efficient power distribution using advanced smart grid technologies.</li>
+          </ul>
+          <div class="inline-links">
+            <a href="#" target="_blank" rel="noreferrer">Source Code</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header-line">
+            <div>
+              <div class="card-title">
+                Research – Int'l Conference on Recent Advances in Electrical Engineering & Computer Sciences 2022
+              </div>
+              <div class="card-meta">Power Transmission · DG · Optimization</div>
+            </div>
+            <span class="card-pill">Research</span>
+          </div>
+          <ul>
+            <li>Presented a transmission scheme integrating renewable DG across a 177-bus system from Sahiwal to Gujranwala.</li>
+            <li>Used GA and PSO to minimize line losses while optimizing economic dispatch and ensuring reliable power delivery.</li>
+          </ul>
+          <div class="inline-links">
+            <a href="#" target="_blank" rel="noreferrer">Project</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Hackathons -->
+      <section id="hackathons" class="section">
+        <div class="section-header">
+          <div class="section-title">Hackathons & AI Events</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header-line">
+            <div>
+              <div class="card-title">Unhallucinate Challenge · 3rd Position</div>
+              <div class="card-meta">24-Hour AI Hackathon</div>
+            </div>
+            <span class="card-pill">LLM Reliability</span>
+          </div>
+          <ul>
+            <li>Developed and deployed an LLM-based system using Mistral-7B and Vectara to reduce hallucinations.</li>
+            <li>Used LangChain, Streamlit, and Hugging Face Transformers for end-to-end prototyping.</li>
+          </ul>
+          <div class="inline-links">
+            <a href="#" target="_blank" rel="noreferrer">Submission</a>
+            <a href="#" target="_blank" rel="noreferrer">Code</a>
+            <a href="#" target="_blank" rel="noreferrer">Certificate</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header-line">
+            <div>
+              <div class="card-title">Reasoning with o1 Summary Hackathon</div>
+              <div class="card-meta">OpenAI o1 · Chroma DB · Django</div>
+            </div>
+            <span class="card-pill">Reasoning</span>
+          </div>
+          <ul>
+            <li>Co-developed an AI-powered competitive programming chatbot integrating o1-preview reasoning with a coding database.</li>
+            <li>Led Django deployment to ensure robust performance and a smooth user experience.</li>
+          </ul>
+          <div class="inline-links">
+            <a href="#" target="_blank" rel="noreferrer">Submission</a>
+            <a href="#" target="_blank" rel="noreferrer">Code</a>
+            <a href="#" target="_blank" rel="noreferrer">Certificate</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header-line">
+            <div>
+              <div class="card-title">Meta Hacker Cup 2024</div>
+              <div class="card-meta">Global Algorithmic Contest</div>
+            </div>
+            <span class="card-pill">Competitive Programming</span>
+          </div>
+          <ul>
+            <li>Advanced to Round 1 while ranking in the Top 10 nationally, solving complex algorithmic problems under time pressure.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Teaching -->
+      <section id="teaching" class="section">
+        <div class="section-header">
+          <div class="section-title">Teaching Experience</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header-line">
+            <div>
+              <div class="card-title">Mentor · Code In Place, Stanford University</div>
+              <div class="card-meta">Remote · April 2024 – June 2024</div>
+            </div>
+            <span class="card-pill">Python</span>
+          </div>
+          <ul>
+            <li>Taught CS106A Python concepts to students from diverse backgrounds in an online classroom setting.</li>
+            <li>Held one-on-one meetings to address coding questions and guide students through challenging topics.</li>
+            <li>Collaborated with Stanford teaching staff to design and run practical exercises and assignments.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-header-line">
+            <div>
+              <div class="card-title">Teaching Assistant · PIEAS</div>
+              <div class="card-meta">Islamabad, Pakistan · Feb 2022 – June 2022</div>
+            </div>
+            <span class="card-pill">Power Systems</span>
+          </div>
+          <ul>
+            <li>Supported the Power Transmission, Distribution & Utilization course as a Teaching Assistant.</li>
+            <li>Helped students with electrical power system design and practical problem-solving.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Volunteering & Leadership -->
+      <section id="volunteering" class="section">
+        <div class="section-header">
+          <div class="section-title">Volunteer & Leadership</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header-line">
+            <div>
+              <div class="card-title">Technical Support for Web · Muaawin-e-Ilm</div>
+              <div class="card-meta">Free Education for Deserted Children</div>
+            </div>
+            <span class="card-pill">Django</span>
+          </div>
+          <ul>
+            <li>Deployed Python (Django) services to improve website workflows and performance.</li>
+            <li>Provided ongoing technical support to ensure smooth and user-friendly web operations.</li>
+          </ul>
+          <div class="inline-links">
+            <a href="#" target="_blank" rel="noreferrer">Website link</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header-line">
+            <div>
+              <div class="card-title">Organizing Manager · ISYWSC ’21 (IEEE PIEAS)</div>
+              <div class="card-meta">Aug 2021</div>
+            </div>
+            <span class="card-pill">Event Management</span>
+          </div>
+          <ul>
+            <li>Managed logistics, team coordination, and participant engagement for the IEEE ISYWSC ’21 conference.</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <div class="card-header-line">
+            <div>
+              <div class="card-title">Co-Head Management · Power Electrical Society (PES), PIEAS</div>
+              <div class="card-meta">Oct 2020 – July 2022</div>
+            </div>
+            <span class="card-pill">Leadership</span>
+          </div>
+          <ul>
+            <li>Oversaw event planning, team operations, and initiatives promoting academic and professional growth.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Education -->
+      <section id="education" class="section">
+        <div class="section-header">
+          <div class="section-title">Education</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header-line">
+            <div>
+              <div class="card-title">
+                Pakistan Institute of Engineering & Applied Sciences (PIEAS)
+              </div>
+              <div class="card-meta">
+                Bachelor of Engineering in Electrical Power & Instrumentation · CGPA: 3.32 / 4.0 · Sep 2018 – July 2022
+              </div>
+            </div>
+            <span class="card-pill">BE Electrical</span>
+          </div>
+          <div class="two-column">
+            <div>
+              <div class="skills-group-title">Instrumentation & Automation</div>
+              <ul>
+                <li>Microcontroller & Interface, Measurements & Instrumentations</li>
+                <li>Communication Systems, Signals & Systems, Linear Control Systems</li>
+                <li>Robotics Fundamentals (extra course)</li>
+              </ul>
+            </div>
+            <div>
+              <div class="skills-group-title">Power Generation & Transmission</div>
+              <ul>
+                <li>Power Generation, Power Electronics, High Voltage Engineering</li>
+                <li>Electrical Machine Design, Power System Protection & Control</li>
+                <li>Digital Logic Design</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Workshops -->
+      <section id="workshops" class="section">
+        <div class="section-header">
+          <div class="section-title">Workshops</div>
+        </div>
+
+        <div class="card">
+          <div class="card-header-line">
+            <div>
+              <div class="card-title">Power System Analysis & Stability – GEPCO</div>
+              <div class="card-meta">June 2023 – July 2023</div>
+            </div>
+            <span class="card-pill">Grid Stability</span>
+          </div>
+          <ul>
+            <li>Explored Pakistan's electrical distribution network: grid stations, feeders, and consumer connections.</li>
+            <li>Studied voltage regulation, fault tolerance, load balancing, and reactive power management.</li>
+            <li>Observed SCADA operations and real-time power flow monitoring for reliability and fault localization.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Skills -->
+      <section id="skills" class="section">
+        <div class="section-header">
+          <div class="section-title">Skills & Expertise</div>
+        </div>
+
+        <div class="card">
+          <div class="skills-groups">
+            <div>
+              <div class="skills-group-title">Programming Languages</div>
+              <div class="skills-group-body">
+                <span>Python</span>
+                <span>JavaScript</span>
+                <span>Matlab</span>
+                <span>C#</span>
+                <span>SQL</span>
+              </div>
+            </div>
+
+            <div>
+              <div class="skills-group-title">Python Libraries & Tools</div>
+              <div class="skills-group-body">
+                <span>Django</span>
+                <span>Django REST Framework</span>
+                <span>Flask</span>
+                <span>Selenium</span>
+                <span>Playwright</span>
+                <span>Hugging Face Transformers</span>
+                <span>NumPy</span>
+                <span>Pandas</span>
+                <span>Matplotlib</span>
+                <span>Seaborn</span>
+                <span>Scikit-learn</span>
+                <span>TensorFlow</span>
+              </div>
+            </div>
+
+            <div>
+              <div class="skills-group-title">Software & Platforms</div>
+              <div class="skills-group-body">
+                <span>Jupyter Notebook</span>
+                <span>PyCharm</span>
+                <span>VS Code</span>
+                <span>Postman</span>
+                <span>Selenium</span>
+                <span>MATLAB</span>
+              </div>
+            </div>
+
+            <div>
+              <div class="skills-group-title">Frameworks & Technologies</div>
+              <div class="skills-group-body">
+                <span>Django</span>
+                <span>Flask</span>
+                <span>.NET Core</span>
+                <span>Angular</span>
+                <span>React</span>
+                <span>SCADA Systems</span>
+                <span>Git</span>
+                <span>GitHub</span>
+                <span>Autogen</span>
+                <span>TensorFlow</span>
+              </div>
+            </div>
+
+            <div>
+              <div class="skills-group-title">Power Systems & AI</div>
+              <div class="skills-group-body">
+                <span>Power System Optimization with AI</span>
+                <span>Grid Stability Prediction</span>
+                <span>Fault Detection & Classification (ML)</span>
+                <span>Renewable Integration & Load Forecasting</span>
+                <span>Economic Dispatch using GA & PSO</span>
+                <span>Smart Grid Monitoring & Automation</span>
+              </div>
+            </div>
+
+            <div>
+              <div class="skills-group-title">Soft Skills</div>
+              <div class="skills-group-body">
+                <span>Technical Writing</span>
+                <span>Public Speaking</span>
+                <span>Mentorship & Instruction</span>
+                <span>Leadership</span>
+                <span>Team Collaboration</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!--
+    TODO:
+    - Replace all href="#" with your actual LinkedIn, GitHub, project, submission, certificate, and website URLs.
+    - Commit this file as index.html in your yourusername.github.io repository.
+  -->
+</body>
+</html>
